@@ -1,0 +1,8 @@
+// Exercicio 1
+
+Calcular o valor da diária do colaborador.
+Identificar se teve hora extra.
+Regra da hora extra:
+- Acima de 8h
+- As primeiras duas horas extras acrescentar 55%
+- As demais horas extras acrescentar 60%
