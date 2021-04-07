@@ -1,38 +1,67 @@
-
 public class Conta {
+
 	private String cliente;
 	private int numero;
 	private double saldo;
 
-	public String getCliente() {
-		return cliente;
+	public Conta(String cliente, int numero) {
+		this.cliente = cliente;
+		this.numero = numero;
+		this.saldo = 0.0;
 	}
 
-	public void setCliente(String clienteRecebido) {
-		cliente = clienteRecebido;
+	public Conta(String cliente, int numero, double saldo) {
+		this(cliente, numero); // Chamada do construtor com dois parâmetros
+		this.saldo = saldo;
+	}
+
+	public String getCliente() {
+		return this.cliente;
+	}
+
+	public void setCliente(String cliente) {
+		this.cliente = cliente;
 	}
 
 	public int getNumero() {
-		return numero;
-	}
-
-	public void setNumero(int numeroRecebido) {
-		numero = numeroRecebido;
+		return this.numero;
 	}
 
 	public double getSaldo() {
-		return saldo;
+		return this.saldo;
 	}
 
-	public void setSaldo(double saldoRecebido) {
-		if (saldoRecebido > 0) {
-			saldo = saldoRecebido;
-		} else {
-			System.err.println("O saldo informado deve ser maior que zero.");
+	public String consultaSaldo() {
+		return String.format("R$ %.2f", this.saldo);
+	}
+
+	public void deposita(double valor) {
+		if (valor <= 0) {
+			System.out.println("Para depósito o valor deve ser positivo e maior do que zero.");
+			return;
 		}
+		this.saldo += valor;
 	}
 	
-	public String consultaSaldo() {
-		return String.format("R$ %.2f", saldo);
+	public double saca(double valor) {
+		if(valor <= 0) {
+			System.out.println("Para saque o valor deve ser positivo e maior do que zero.");
+			return 0.0;
+		}
+		
+		if(valor >= this.saldo) {
+			System.out.println("Saldo insulficiente.");
+			return 0.0;
+		}
+		
+		this.saldo -= valor;
+		return valor;
 	}
+	
+	public void  transfere(double valor, Conta conta) {
+		double saque = this.saca(valor);
+		if(saque == 0.0) return;
+		conta.deposita(saque);
+	}
+
 }

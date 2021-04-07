@@ -1,26 +1,29 @@
+import javax.swing.JOptionPane;
 
 public class Application {
 
 	public static void main(String[] args) {
-		Conta c = new Conta(); // Instancia do objeto
+		Conta conta = new Conta("Maria Joaquina", 1); // Instancia do objeto
+		Conta conta2 = new Conta("Gloria Maria", 2);
+		
+		String valorInformado = JOptionPane.showInputDialog("Informe o valor de depósito."); // Declarado
+		double valor = Double.parseDouble(valorInformado);
+		
+		conta.deposita(valor);
 
-		c.setCliente("Gloria Maria"); // Atribuição de valores
-		c.setNumero(1);
-		c.setSaldo(400.0);
+		valorInformado = JOptionPane.showInputDialog("Informe o valor de transferência."); // Reuso
+		valor = Double.parseDouble(valorInformado);
 
-		System.out.println(c.getCliente()); // Consulta de valores
-		System.out.println(c.getNumero());
-
-		double saldo = c.getSaldo();
-
-		if (saldo > 200) {
-			System.out.println("Oferecer investimento.");
-		} else {
-			System.out.println("Oferecer emprestimo.");
-		}
-
-		System.out.println(c.consultaSaldo());
+		conta.transfere(valor, conta2);
+		
+		JOptionPane.showMessageDialog(null, String.format("O saldo da conta é R$ %.2f", conta.getSaldo()));
+		JOptionPane.showMessageDialog(null, String.format("O saldo da conta é R$ %.2f", conta2.getSaldo()));
 
 	}
 
 }
+
+// Para cada tipo primitivo, o Java tem uma classe que o representa
+// double -> Double
+// int -> Integer
+// char -> Char
