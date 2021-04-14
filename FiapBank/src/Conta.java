@@ -1,25 +1,25 @@
 public class Conta {
 
-	private String cliente;
+	private Cliente cliente;
 	private int numero;
 	private double saldo;
 
-	public Conta(String cliente, int numero) {
+	public Conta(Cliente cliente, int numero) {
 		this.cliente = cliente;
 		this.numero = numero;
 		this.saldo = 0.0;
 	}
 
-	public Conta(String cliente, int numero, double saldo) {
+	public Conta(Cliente cliente, int numero, double saldo) {
 		this(cliente, numero); // Chamada do construtor com dois parâmetros
 		this.saldo = saldo;
 	}
 
-	public String getCliente() {
+	public Cliente getCliente() {
 		return this.cliente;
 	}
 
-	public void setCliente(String cliente) {
+	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
 	}
 
