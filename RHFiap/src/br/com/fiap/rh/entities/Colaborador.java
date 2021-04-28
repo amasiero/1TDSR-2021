@@ -1,9 +1,9 @@
 package br.com.fiap.rh.entities;
 
-public class Colaborador {
-	private String nome;
-	private Integer matricula;
-	private Double salario;
+public abstract class Colaborador { // Superclasse | classe Colaborador é uma subclasse de Object
+	protected String nome;
+	protected Integer matricula;
+	protected Double salario;
 
 	public Colaborador(String nome, Integer matricula) {
 		super();
@@ -35,5 +35,7 @@ public class Colaborador {
 	public Integer getMatricula() {
 		return matricula;
 	}
+	
+	public abstract Double calculaSalario();
 
 }

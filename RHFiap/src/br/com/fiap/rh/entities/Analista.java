@@ -22,10 +22,24 @@ public class Analista extends Colaborador {
 	public void setSenioridade(String senioridade) {
 		this.senioridade = senioridade;
 	}
-	
+
+	@Override
+	public Double calculaSalario() {
+		switch (this.senioridade) {
+		case "Junior":
+			return this.salario * 1.05;
+		case "Pleno":
+			return this.salario * 1.15;
+		case "Senior":
+			return this.salario * 1.30;
+		default:
+			return this.salario;
+		}
+	}
+
 	@Override
 	public String toString() {
-		return String.format("{nome: %s, matricula: %d, salario: %.2f, meta: %d}", super.getNome(),
+		return String.format("{nome: %s, matricula: %d, salario: %.2f, senioridade: %s}", super.getNome(),
 				super.getMatricula(), super.getSalario(), this.getSenioridade());
 	}
 
@@ -33,14 +47,16 @@ public class Analista extends Colaborador {
 	public int hashCode() {
 		return Objects.hash(super.getNome(), super.getMatricula(), super.getSalario(), this.senioridade);
 	}
-	
+
 	@Override
 	public boolean equals(Object o) {
-		if(!(o instanceof Analista)) return false;
-		if(o == this) return true;
+		if (!(o instanceof Analista))
+			return false;
+		if (o == this)
+			return true;
 		Analista analista = (Analista) o;
-		return this.getNome().equals(analista.getNome()) && this.getSenioridade().equals(analista.getSenioridade()) &&
-				this.getMatricula() == analista.getMatricula() && this.getSalario() == analista.getSalario();
+		return this.getNome().equals(analista.getNome()) && this.getSenioridade().equals(analista.getSenioridade())
+				&& this.getMatricula() == analista.getMatricula() && this.getSalario() == analista.getSalario();
 	}
 
 }
