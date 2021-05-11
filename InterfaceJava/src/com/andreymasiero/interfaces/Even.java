@@ -1,0 +1,10 @@
+package com.andreymasiero.interfaces;
+
+public class Even implements Predicate {
+
+	@Override
+	public Boolean rule(Integer someValue) {
+		return someValue % 2 == 0;
+	}
+
+}
