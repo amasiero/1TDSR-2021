@@ -42,7 +42,7 @@ public class Principal {
 			
 			conn.close();
 		} catch (SQLException e) {
-			System.err.println("Ocorreu um erro na conex„o com o banco de dados.");
+			System.err.println("Ocorreu um erro na conex√£o com o banco de dados.");
 			System.err.println(e.getMessage());
 		}
 

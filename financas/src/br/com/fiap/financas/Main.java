@@ -1,27 +1,26 @@
 package br.com.fiap.financas;
 
+import java.io.IOException;
 import java.math.BigDecimal;
-import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.time.LocalDate;
 
 import br.com.fiap.financas.entity.Transaction;
 import br.com.fiap.financas.entity.Type;
+import br.com.fiap.financas.factory.connection.ConnectionFactoryReflection;
+import br.com.fiap.financas.factory.connection.Database;
 import br.com.fiap.financas.repository.TransactionRepository;
 
 public class Main {
 	public static void main(String[] args) {
 		try {
-			Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:ORCLCDB", "SYS as SYSDBA",
-					"Oradoc_db1");
-			Transaction transaction = new Transaction("Salário", LocalDate.of(2021, 8, 17), Type.INPUT,
-					new BigDecimal(4500.0));
-			TransactionRepository repository = new TransactionRepository(conn);
+			
+			Transaction transaction = new Transaction("Restaurante", LocalDate.of(2021, 8, 24), Type.OUTPUT,
+					new BigDecimal(30.90));
+			TransactionRepository repository = new TransactionRepository(ConnectionFactoryReflection.getConnection(Database.ORACLE));
 			repository.save(transaction);
 			
-			conn.close();
-		} catch (SQLException e) {
+		} catch (SQLException | ClassNotFoundException | IOException | InstantiationException | IllegalAccessException e) {
 			e.printStackTrace();
 		} 
 
