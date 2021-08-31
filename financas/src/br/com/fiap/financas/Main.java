@@ -1,6 +1,7 @@
 package br.com.fiap.financas;
 
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.math.BigDecimal;
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -15,12 +16,12 @@ public class Main {
 	public static void main(String[] args) {
 		try {
 			
-			Transaction transaction = new Transaction("Restaurante", LocalDate.of(2021, 8, 24), Type.OUTPUT,
-					new BigDecimal(30.90));
+			Transaction transaction = new Transaction("Salario", LocalDate.of(2021, 9, 1), Type.INPUT,
+					new BigDecimal(4500.0));
 			TransactionRepository repository = new TransactionRepository(ConnectionFactoryReflection.getConnection(Database.ORACLE));
 			repository.save(transaction);
 			
-		} catch (SQLException | ClassNotFoundException | IOException | InstantiationException | IllegalAccessException e) {
+		} catch (SQLException | ClassNotFoundException | IOException | InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException | NoSuchMethodException | SecurityException e) {
 			e.printStackTrace();
 		} 
 
